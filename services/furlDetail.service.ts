@@ -47,6 +47,23 @@ export class FurlDetailService extends BaseSchema {
 		return {};
 	}
 
+	// POST FURL Details
+	@Action({
+		params: {
+
+		}
+	})
+	public async createFurl(ctx: Context<any>): Promise<any> {
+		const response = await this.createFurlMethod();
+
+		return ResponseHandler.successResponse(200, '', '', response);
+	}
+
+	@Method
+	public async createFurlMethod(): Promise<any> {
+		return {};
+	}
+
 	public stopped: Function = async () => await getConnection().close();
 }
 

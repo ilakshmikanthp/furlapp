@@ -16,7 +16,8 @@ const ApiService: ServiceSchema = {
 			{
 				aliases: {
 					// shifts APIs 
-					'GET /furldetails': 'furlDetail.getShifts',
+					'GET /furldetails': 'furlDetail.GetFurlDetail',
+					'POST /furldetails': 'furlDetail.createFurl',
 				},
 				mappingPolicy: 'restrict',
 				cors: {
