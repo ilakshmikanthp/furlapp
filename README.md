@@ -1,8 +1,6 @@
-#  TeamLease Digital Workforce Solutions - ATL
+#  FURL APP API SOLUTION
 
 ## About
-### TeamLease Digital Workforce Solutions - ATL
-
 
 ## Build Setup
 
@@ -28,6 +26,6 @@ $ npm run start
 # Login to postgresql
 $ psql -u postgres
 $ <Enter Password>
-$ CREATE DATABASE dwsat_test
+$ CREATE DATABASE furldb
 $ /q
 ```
