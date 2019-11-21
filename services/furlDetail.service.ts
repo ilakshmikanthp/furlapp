@@ -50,16 +50,16 @@ export class FurlDetailService extends BaseSchema {
 	// POST FURL Details
 	@Action({
 		params: {
-			"entry_id":  { type: 'string' },
-			"furl_description":  { type: 'string' },
-			"target":  { type: 'string' },
-			"location":  { type: 'string' },
-			"description":  { type: 'string' },
-			"upi":  { type: 'string' },
-			"lead_contact":  { type: 'string' },
-			"date": { type: 'string' },
-			"comments":  { type: 'string' },
-			"team_dl": { type: 'string' }
+			"entry_id":  { type: 'string' , optional: false},
+			"furl_description":  { type: 'string', optional: true },
+			"target":  { type: 'string' , optional: true},
+			"location":  { type: 'string' , optional: true},
+			"description":  { type: 'string' , optional: true},
+			"upi":  { type: 'string' , optional: true},
+			"lead_contact":  { type: 'string' , optional: true},
+			"date": { type: 'string' , optional: true},
+			"comments":  { type: 'string' , optional: true},
+			"team_dl": { type: 'string' , optional: true}
 		}
 	})
 	public async createFurl(ctx: Context<any>): Promise<any> {
