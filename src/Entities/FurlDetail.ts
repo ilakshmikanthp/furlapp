@@ -28,7 +28,7 @@ export class FurlDetail {
 	@Column({type: 'varchar', nullable:true})
 	lead_contact: string;
 
-	@Column({type: 'varchar', nullable:true})
+	@Column({type: 'date', nullable:true})
 	date: string;
 
 	@Column({type: 'varchar', nullable:true})

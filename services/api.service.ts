@@ -10,14 +10,15 @@ const ApiService: ServiceSchema = {
 
 	// More info about settings: https://moleculer.services/docs/0.13/moleculer-web.html 
 	settings: {
-		port: process.env.PORT || 3000,
+		port: process.env.PORT || 8000,
 
 		routes: [
 			{
 				aliases: {
 					// shifts APIs 
 					'GET /furldetails': 'furlDetail.GetFurlDetail',
-					'POST /furldetails': 'furlDetail.createFurl',
+					'POST /furldetail': 'furlDetail.createFurl',
+					'PUT /furldetail/:id': 'furlDetail.updateFurl',
 				},
 				mappingPolicy: 'restrict',
 				cors: {

@@ -4,11 +4,26 @@ import { FurlDetail } from '@Entities/FurlDetail';
 
 //#region Interface Imports
 import { IFurlDetail } from '@Interfaces';
+import { getRepository } from 'typeorm';
 //#endregion Interface Imports
 
 export namespace FurlDetailRepository {
 	export const getFurlDetails = async (): Promise<any> => {
+		return await getRepository(FurlDetail)
+		.createQueryBuilder()
+		.where('is_deleted=false')
+		.getMany();
+	};
 
-		return {};
+	export const createFurlDetail = async (inParams:any): Promise<any> => {
+		const count = await getRepository(FurlDetail)
+			.createQueryBuilder()
+			.where('entry_id=:entry_id',{entry_id:inParams.entry_id})
+			.andWhere('is_deleted=false')
+			.getCount();
+		if(count){
+			return { isExists : true };
+		}
+		return { data : await getRepository(FurlDetail).save(inParams) , isExists : false  };
 	};
 }
