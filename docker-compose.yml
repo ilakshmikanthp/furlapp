@@ -1,0 +1,60 @@
+version: "3.0"
+
+services:
+
+  api:
+    build: .
+    image: api
+    container_name: dws_api
+    env_file: docker-compose.env
+    environment:
+      SERVICES: api
+      PORT: 3000
+    ports:
+      - "3000:3000"
+      - "5432:5432"
+    links:
+      - nats-server
+      # - postgres
+  
+  work_from_home:
+    build: .
+    image: work_from_home
+    container_name: dws_wfh
+    env_file: docker-compose.env
+    environment:
+      SERVICES: work_from_home
+    links:
+      - nats-server
+    # ports:
+    #   - "5432:5432"
+    #  - postgres
+    # environment:
+    #   - PGPASSWORD=newpassword
+    #   - PGUSER=postgres
+    #   - PGDATABASE=nodejs
+    #   - PGHOST=postgres
+    #   - PGPORT=5432
+    # depends_on:
+    #   - postgres
+
+  nats-server:
+    image: nats:latest
+    container_name: nats
+    ports:
+      - "4222:4222"
+
+  # postgres:
+  #   image: postgres:11.5-alpine
+  #   container_name: pg_db
+  #   ports:
+  #   - "5432:5432"
+  #   environment:
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=postgres
+  #     - POSTGRES_DB=test
+  #   volumes:
+  #     - d:/pgdata:/var/lib/postgresql/data 
+  
+  # volumes:
+  #   pgdata: {}

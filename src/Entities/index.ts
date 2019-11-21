@@ -1,0 +1,1 @@
+export { FurlDetail } from './FurlDetail';

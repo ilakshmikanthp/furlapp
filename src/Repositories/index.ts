@@ -1,0 +1,1 @@
+export { FurlDetailRepository } from '@Repositories/FurlDetail';

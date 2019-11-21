@@ -1,0 +1,1 @@
+// export { FurlDetailHelper } from '@ServiceHelpers/FurlDetailHelper';

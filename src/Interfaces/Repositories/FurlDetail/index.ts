@@ -1,0 +1,1 @@
+export { IFurlDetail } from './IFurlDetail';
