@@ -19,6 +19,7 @@ const ApiService: ServiceSchema = {
 					'GET /furldetails': 'furlDetail.GetFurlDetail',
 					'POST /furldetail': 'furlDetail.createFurl',
 					'PUT /furldetail/:id': 'furlDetail.updateFurl',
+					'DELETE /furldetail/:id': 'furlDetail.deleteFurl'
 				},
 				mappingPolicy: 'restrict',
 				cors: {

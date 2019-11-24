@@ -43,6 +43,9 @@ export class FurlDetail {
 	@Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
 	created_at?: string;
 
+	@Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
+	updated_at?: string;
+
 	constructor( entry_id: string, furl_description: string, target: string, location: string, description: string, 
 		upi: string, lead_contact: string, date: string, comments: string, team_dl: string){
 		this.entry_id=entry_id ;

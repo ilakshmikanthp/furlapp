@@ -47,7 +47,7 @@ export class FurlDetailService extends BaseSchema {
 		return await FurlDetailRepository.getFurlDetails();
 	}
 
-	// POST FURL Details
+	//#region ---- POST FURL Details -----
 	@Action({
 		params: {
 			"entry_id":  { type: 'string' , optional: false},
@@ -66,15 +66,69 @@ export class FurlDetailService extends BaseSchema {
 		const response = await this.createFurlMethod(ctx);
 		
 		if(!response.isExists){
-			return ResponseHandler.successResponse(200, '', '', response.data);
+			return ResponseHandler.successResponse(200, '', '', {status:'SUCCESS', id:response.data.id});
 		}
-		return ResponseHandler.customErrorResponse(400, 'Record Exists', '', '')
+		return ResponseHandler.customErrorResponse(400, 'Record Already Exists', '', '')
 	}
 
 	@Method
 	public async createFurlMethod(ctx: Context<any>): Promise<any> {
 		return await FurlDetailRepository.createFurlDetail(ctx.params);
 	}
+
+	//#endregion 
+
+	//#region ---- PUT FURL Details -----
+	@Action({
+		params: {
+			"furl_description":  { type: 'string', optional: true },
+			"target":  { type: 'string' , optional: true},
+			"location":  { type: 'string' , optional: true},
+			"description":  { type: 'string' , optional: true},
+			"upi":  { type: 'string' , optional: true},
+			"lead_contact":  { type: 'string' , optional: true},
+			"date": { type: 'string' , optional: true},
+			"comments":  { type: 'string' , optional: true},
+			"team_dl": { type: 'string' , optional: true}
+		}
+	})
+	public async updateFurl(ctx: Context<any>): Promise<any> {
+		const response = await this.updateFurlMethod(ctx);
+		
+		if(!_.isEmpty(response.raw[0])){
+			return ResponseHandler.successResponse(200, '', '', {status:'SUCCESS', id:response.raw[0].id});
+		}
+		return ResponseHandler.customErrorResponse(400, 'No Record Exists', '', '')
+	}
+
+	@Method
+	public async updateFurlMethod(ctx: Context<any>): Promise<any> {
+		return await FurlDetailRepository.updateFurlDetail(ctx.params);
+	}
+
+	//#endregion 
+
+	//#region ---- DELETE FURL Details -----
+	@Action({
+		params: {
+
+		}
+	})
+	public async deleteFurl(ctx: Context<any>): Promise<any> {
+		const response = await this.deleteFurlMethod(ctx);
+		
+		if(!_.isEmpty(response.raw[0])){
+			return ResponseHandler.successResponse(200, '', '', {status:'SUCCESS', id:response.raw[0].id});
+		}
+		return ResponseHandler.customErrorResponse(400, 'No Record Exists', '', '')
+	}
+
+	@Method
+	public async deleteFurlMethod(ctx: Context<any>): Promise<any> {
+		return await FurlDetailRepository.deleteFurlDetail(ctx.params.id);
+	}
+
+	//#endregion 
 
 	public stopped: Function = async () => await getConnection().close();
 }
