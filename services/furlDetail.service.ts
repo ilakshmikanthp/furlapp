@@ -50,7 +50,6 @@ export class FurlDetailService extends BaseSchema {
 	//#region ---- POST FURL Details -----
 	@Action({
 		params: {
-			"entry_id":  { type: 'string' , optional: false},
 			"furl_description":  { type: 'string', optional: true },
 			"target":  { type: 'string' , optional: true},
 			"location":  { type: 'string' , optional: true},

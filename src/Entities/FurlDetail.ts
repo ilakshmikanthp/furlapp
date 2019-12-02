@@ -7,8 +7,8 @@ export class FurlDetail {
 	@PrimaryGeneratedColumn()
 	id?: number;
 
-	@Column({type: 'varchar', nullable:true})
-	entry_id: string;
+	// @Column({type: 'varchar', nullable:true})
+	// entry_id: string;
 
 	@Column({type: 'varchar', nullable:true})
 	furl_description: string;
@@ -46,9 +46,9 @@ export class FurlDetail {
 	@Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
 	updated_at?: string;
 
-	constructor( entry_id: string, furl_description: string, target: string, location: string, description: string, 
+	constructor( /*entry_id: string,*/ furl_description: string, target: string, location: string, description: string, 
 		upi: string, lead_contact: string, date: string, comments: string, team_dl: string){
-		this.entry_id=entry_id ;
+		// this.entry_id=entry_id ;
 		this.furl_description=furl_description ;
 		this.target=target ;
 		this.location=location ;

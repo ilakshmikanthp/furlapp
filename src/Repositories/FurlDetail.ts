@@ -18,7 +18,7 @@ export namespace FurlDetailRepository {
 	export const createFurlDetail = async (inParams:any): Promise<any> => {
 		const count = await getRepository(FurlDetail)
 			.createQueryBuilder()
-			.where('entry_id=:entry_id',{entry_id:inParams.entry_id})
+			.where('furl_description=:furlDescription',{furlDescription:inParams.furl_description})
 			.andWhere('is_deleted=false')
 			.getCount();
 		if(count){
