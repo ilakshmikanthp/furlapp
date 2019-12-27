@@ -14,6 +14,9 @@ export class FurlDetail {
 	furl_description: string;
 
 	@Column({type: 'varchar', nullable:true})
+	short_url: string;
+
+	@Column({type: 'varchar', nullable:true})
 	target: string;
 
 	@Column({type: 'varchar', nullable:true})
@@ -46,11 +49,12 @@ export class FurlDetail {
 	@Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
 	updated_at?: string;
 
-	constructor( /*entry_id: string,*/ furl_description: string, target: string, location: string, description: string, 
+	constructor( /*entry_id: string,*/ furl_description: string, target: string, short_url: string, location: string, description: string, 
 		upi: string, lead_contact: string, date: string, comments: string, team_dl: string){
 		// this.entry_id=entry_id ;
 		this.furl_description=furl_description ;
 		this.target=target ;
+		this.short_url=short_url;
 		this.location=location ;
 		this.description=description ;
 		this.upi=upi ;

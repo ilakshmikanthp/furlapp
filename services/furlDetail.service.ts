@@ -13,8 +13,11 @@ import _ from 'lodash';
 
 //#region Interface Imports
 import { } from '@Interfaces';
-import { ResponseHandler } from '@Meta';
+import { ResponseHandler } from '@Meta'; 
+import sleep from 'sleep-promise';
 //#endregion Interface Imports
+
+const shortUrl = require('node-url-shortener');
 
 export class FurlDetailService extends BaseSchema {
 
@@ -58,10 +61,22 @@ export class FurlDetailService extends BaseSchema {
 			"lead_contact":  { type: 'string' , optional: true},
 			"date": { type: 'string' , optional: true},
 			"comments":  { type: 'string' , optional: true},
-			"team_dl": { type: 'string' , optional: true}
+			"team_dl": { type: 'string' , optional: true},
+			"short_url": { type: 'string' , optional: true}
 		}
 	})
 	public async createFurl(ctx: Context<any>): Promise<any> {
+		if(_.isEmpty(ctx.params.target)){
+			return ResponseHandler.customErrorResponse(400, 'Invalid Target URL', '', '')
+		}
+		shortUrl.short(ctx.params.target,(err: any, url: any)=>{
+			ctx.params.short_url = (err != null) ? null : url;
+		});
+		await (async () => {
+			await sleep(2000);
+			console.log('After Response timeout', ctx.params.short_url);
+		})();
+
 		const response = await this.createFurlMethod(ctx);
 		
 		if(!response.isExists){
@@ -92,6 +107,18 @@ export class FurlDetailService extends BaseSchema {
 		}
 	})
 	public async updateFurl(ctx: Context<any>): Promise<any> {
+		
+		if(_.isEmpty(ctx.params.target)){
+			return ResponseHandler.customErrorResponse(400, 'Invalid Target URL', '', '')
+		}
+		shortUrl.short(ctx.params.target,(err: any, url: any)=>{
+			ctx.params.short_url = (err != null) ? null : url;
+		});
+		await (async () => {
+			await sleep(2000);
+			console.log('After Response timeout', ctx.params.short_url);
+		})();
+
 		const response = await this.updateFurlMethod(ctx);
 		
 		if(!_.isEmpty(response.raw[0])){

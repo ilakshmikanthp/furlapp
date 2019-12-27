@@ -45,6 +45,7 @@ export namespace FurlDetailRepository {
 		.set({ 
 			furl_description: inParams.furl_description ,
 			target: inParams.target,
+			short_url: inParams.short_url,
 			location: inParams.location,
 			description: inParams.description,
 			upi: inParams.upi,
